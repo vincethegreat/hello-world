@@ -15,4 +15,7 @@ source.dir = .
 requirements = kivy
 
 # (str) Version of your application
-version = 1.0  # You can specify any version number you prefer
+version = 1.0
+
+# Add the following line to accept the Android SDK license
+android.accept_sdk_license = True
