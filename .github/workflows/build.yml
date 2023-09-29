@@ -22,6 +22,9 @@ jobs:
       - name: Install Cython
         run: pip install cython
 
+      - name: Install Android Build Tools
+        run: sdkmanager "build-tools;30.0.3"  # Adjust to the version you need
+
       - name: Get Date
         id: get-date
         run: |
