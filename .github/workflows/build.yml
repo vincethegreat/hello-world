@@ -8,7 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          sdk-version: '30' # Adjust to the Android API level you need
+
+      - name: Install Buildozer
+        run: pip install buildozer
 
       - name: Get Date
         id: get-date
@@ -28,18 +37,14 @@ jobs:
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
 
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          command: buildozer android debug
-          buildozer_version: master
+        run: buildozer android debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: package
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: ./bin
 
       - name: Set Environment File
         run: |
-          echo "MY_PACKAGE_PATH=${{ steps.buildozer.outputs.filename }}" >> $GITHUB_ENV
+          echo "MY_PACKAGE_PATH=./bin" >> $GITHUB_ENV
