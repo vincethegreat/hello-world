@@ -19,6 +19,9 @@ jobs:
       - name: Install Buildozer
         run: pip install buildozer
 
+      - name: Install Cython
+        run: pip install cython
+
       - name: Get Date
         id: get-date
         run: |
