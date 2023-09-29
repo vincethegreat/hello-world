@@ -12,7 +12,7 @@ package.domain = org.test
 source.dir = .
 
 # (list) Application requirements
-requirements = kivy, cython==0.29.23  # Use the version appropriate for your project
+requirements = kivy, cython==3.0.2  # Use the version appropriate for your project
 
 # (str) Version of your application
 version = 1.0
